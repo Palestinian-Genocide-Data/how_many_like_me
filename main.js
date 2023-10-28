@@ -18,7 +18,6 @@ const hookups = {}
 async function main() {
 	population_data = await getPopulationDataByCity()
 	palestine_data = await getPalestineData()
-	precomputed_palestine_statistics = await precomputePalestineStatistics()
 
 	// Retrieve the elements from the profile section.
 	const p_els = document.querySelectorAll(".profile-datum")
@@ -46,8 +45,8 @@ async function getPopulationDataByCity() {
 	for (i in population_data.data) {
 		let el = population_data.data[i]
 
-		result[el[1]] ??= {}
-		result[el[1]][el[0]] = {
+		result[el[1]?.toLowerCase()] ??= {}
+		result[el[1]?.toLowerCase()][el[0]?.toLowerCase()] = {
 			population: el[2]
 		}
 	}
@@ -97,27 +96,33 @@ async function precomputePalestineStatistics() {
 	hookup_data.hours_between_similar_deaths = 24 / hookup_data.similar_death_count_per_day
 
 	// In your country
-	let your_country_data = population_data[hookup_data['country']]
-	let your_city_data = your_country_data[hookup_data['city']]
+	let your_country_data = population_data[hookup_data['country'].toLowerCase()]
+	let your_city_data = your_country_data?.[hookup_data['city'].toLowerCase()]
 
-	let country_population = Object.values(your_country_data).reduce((acc, city) => acc + city.population, 0)
+	console.log(your_city_data)
 
-	hookup_data.deaths_in_your_country = Math.ceil(country_population * hookup_data.death_percentage)
-	hookup_data.child_deaths_in_your_country = Math.ceil(hookup_data.deaths_in_your_country * palestine_data.children_percentage.overall)
-	hookup_data.infant_deaths_in_your_country = Math.ceil(hookup_data.deaths_in_your_country * palestine_data.infant_percentage.overall)
+	if (your_country_data) {
+		let country_population = Object.values(your_country_data).reduce((acc, city) => acc + city.population, 0)
+		hookup_data.deaths_in_your_country = Math.ceil(country_population * hookup_data.death_percentage)
+		hookup_data.child_deaths_in_your_country = Math.ceil(hookup_data.deaths_in_your_country * palestine_data.children_percentage.overall)
+		hookup_data.infant_deaths_in_your_country = Math.ceil(hookup_data.deaths_in_your_country * palestine_data.infant_percentage.overall)
+	}
 
 	// In your city
-	hookup_data.deaths_in_your_city = Math.ceil(your_city_data.population * hookup_data.death_percentage)
-	hookup_data.child_deaths_in_your_city = Math.ceil(hookup_data.deaths_in_your_city * palestine_data.children_percentage.overall)
-	hookup_data.infant_deaths_in_your_city = Math.ceil(hookup_data.deaths_in_your_city * palestine_data.infant_percentage.overall)
-
-	hookup_data.deaths_in_your_city_per_day = Math.ceil(hookup_data.deaths_in_your_city / beggining_of_time)
-	hookup_data.child_deaths_in_your_city_per_day = Math.ceil(hookup_data.child_deaths_in_your_city / beggining_of_time)
-	hookup_data.infant_deaths_in_your_city_per_day = Math.ceil(hookup_data.infant_deaths_in_your_city / beggining_of_time)
+	if (your_city_data) {
+		console.log(hookup_data['city'])
+		hookup_data.deaths_in_your_city = Math.ceil(your_city_data.population * hookup_data.death_percentage)
+		hookup_data.child_deaths_in_your_city = Math.ceil(hookup_data.deaths_in_your_city * palestine_data.children_percentage.overall)
+		hookup_data.infant_deaths_in_your_city = Math.ceil(hookup_data.deaths_in_your_city * palestine_data.infant_percentage.overall)
+	
+		hookup_data.deaths_in_your_city_per_day = Math.ceil(hookup_data.deaths_in_your_city / beggining_of_time)
+		hookup_data.child_deaths_in_your_city_per_day = Math.ceil(hookup_data.child_deaths_in_your_city / beggining_of_time)
+		hookup_data.infant_deaths_in_your_city_per_day = Math.ceil(hookup_data.infant_deaths_in_your_city / beggining_of_time)
+	}
 }
 
 /** Updates all the data based on the inputs and the statistical data. */
-function update() {
+async function update() {
 	for (const [k, el] of Object.entries(profile_input_elements)) {
 		hookup_data[k] = el.value
 	}
@@ -126,7 +131,7 @@ function update() {
 	
 	clearData(hookups)
 
-	precomputePalestineStatistics()
+	await precomputePalestineStatistics()
 
 	fillData(hookups, hookup_data)
 }
@@ -134,10 +139,9 @@ function update() {
 /** Clear HTML elements with '...'s. */
 function clearData(hookups) {
 	for (const key of Object.keys(hookups)) {
-		hookups[key].forEach((el) => el.innerHTML = "...")
+		hookups[key].forEach((el) => el.innerHTML = "⟳")
 	}
 }
-
 
 /** Fills the HTML elements with the data from the source. */
 function fillData(hookups, source) {
