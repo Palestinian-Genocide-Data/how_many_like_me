@@ -1,13 +1,18 @@
 let beggining_of_time = new Date()
+
 let population_data 
-let datasource
+let palestine_data
+
+let profile_data = {}
 const profile_input_elements = {}
+
+/** The elements in the page that will have their values changed. */
 const hookups = {}
 
 /** Main function */
 async function main() {
-	population_data = await populationDataByCity(datasource)
-	datasource = await generateDataSource()
+	population_data = await getPopulationDataByCity()
+	palestine_data = await getPalestineData()
 
 	// Retrieve the elements from the profile section.
 	const p_els = document.querySelectorAll(".profile-datum")
@@ -22,22 +27,12 @@ async function main() {
 		hookups[dt] ??= []
 		hookups[dt].push(el)
 	}
-}
 
-async function generateDataSource() {
-	let result = {}
-
-	result.gender = "man"
-	result.country = "United States"
-	result.city = "New York"
-	result.age = 14
-	result.alike_death_count = 30
-
-	return result
+	update()
 }
 
 /** Organizes the population data by country and city */
-async function populationDataByCity() {
+async function getPopulationDataByCity() {
 	let population_data = await read_as_csv('./data/d_population.csv')
 
 	const result = {}
@@ -54,22 +49,25 @@ async function populationDataByCity() {
 	return result
 }
 
+async function getPalestineData() {
+	let palestine_data = (await read_as_csv('./data/d_palestine.csv')).data.slice(5)
+
+	return palestine_data
+}
+
+/** Updates all the data based on the inputs and the statistical data. */
 function update() {
 	for (const [k, el] of Object.entries(profile_input_elements)) {
-		datasource[k] = el.value
+		profile_data[k] = el.value
 	}
 
-	console.log(profile_input_elements)
-
-	datasource.gender_pl = {woman: 'women', man: 'men'}[datasource.gender]
+	profile_data.gender_pl = {woman: 'women', man: 'men'}[profile_data.gender]
 	
-	datasource.overall_death_count = 124
-	datasource.same_gender_death_count = 20
-	datasource.same_age_death_count = 4
+	profile_data.overall_death_count = 124
+	profile_data.same_gender_death_count = 20
+	profile_data.same_age_death_count = 4
 
-	console.log(datasource)
-
-	fillData(hookups, datasource)
+	fillData(hookups, profile_data)
 }
 
 /** Fills the HTML elements with the data from the source. */
