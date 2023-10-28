@@ -28,20 +28,33 @@
 		<main class="flex v expand">
 			<section>
 				<div class="flex v center expand">
-					<span class="info t0">I am <select>
-						<option value="woman" selected>a woman</option>
-						<option value="man" selected>a man</option>
-					</select> and I am <input type="number" value="14"> years old.</span>
-					<span class="info t0">I live in <input type="text" id="select-country" value="United States">,</span>
-					<span class="info t0">in the city of <input type="text" id="select-city" value="New York">.</span>
+					<span class="info t0">I am
+						<select datum="gender" class="profile-datum">
+							<option value="woman" selected>a woman</option>
+							<option value="man" selected>a man</option>
+						</select>
+						and I am
+						<input datum="age" class="profile-datum" type="number" value="14">
+						years old.</span>
+					<span class="info t0">
+						I live in
+						<input datum="country" class="profile-datum" type="text" id="select-country" value="United States">
+						,
+					</span>
+					<span class="info t0">
+						in the city of
+						<input datum="city" class="profile-datum" type="text" id="select-city" value="New York">
+						.
+					</span>
 				</div>
 			</section>
+			<input type="button" onclick="update()" value="(WIP) update"/>
 			<section id="info_alike">
 				<div class="flex v expand">
 					<span class="info t1">You should know that...</span>
 					<table>
 						<tr>
-							<td><span class="hk" datum="alike_death_count">_</span></td>
+							<td><span class="hk" datum="overall_death_count">_</span></td>
 							<td>people like yourself have been murdered by Israel in its genocide in Gaza, Palestine.</td>
 						</tr>
 						<tr>
