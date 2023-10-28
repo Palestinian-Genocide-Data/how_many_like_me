@@ -27,3 +27,12 @@ async function read_as_csv(file_path) {
 		console.error(e);
 	}
 }
+
+/** Counts how many elements in an array match a given condition. */
+function count(arr, condition) {
+	let counter = 0;
+	for (const el of arr) {
+		if (condition(el)) counter++;
+	}
+	return counter;
+}

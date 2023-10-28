@@ -2,8 +2,9 @@ let beggining_of_time = new Date()
 
 let population_data 
 let palestine_data
+let precomputed_palestine_statistics = {}
 
-let profile_data = {}
+let hookup_data = {}
 const profile_input_elements = {}
 
 /** The elements in the page that will have their values changed. */
@@ -13,6 +14,7 @@ const hookups = {}
 async function main() {
 	population_data = await getPopulationDataByCity()
 	palestine_data = await getPalestineData()
+	precomputed_palestine_statistics = await precomputePalestineStatistics()
 
 	// Retrieve the elements from the profile section.
 	const p_els = document.querySelectorAll(".profile-datum")
@@ -49,25 +51,38 @@ async function getPopulationDataByCity() {
 	return result
 }
 
+/** Retrieves the CSV data to calculate Palestinian statistics on. */
 async function getPalestineData() {
 	let palestine_data = (await read_as_csv('./data/d_palestine.csv')).data.slice(5)
 
+	console.log(palestine_data[4])
 	return palestine_data
+}
+
+/** Cache to lighten the load. */
+async function precomputePalestineStatistics() {
+
 }
 
 /** Updates all the data based on the inputs and the statistical data. */
 function update() {
 	for (const [k, el] of Object.entries(profile_input_elements)) {
-		profile_data[k] = el.value
+		hookup_data[k] = el.value
 	}
 
-	profile_data.gender_pl = {woman: 'women', man: 'men'}[profile_data.gender]
+	hookup_data.gender_pl = {woman: 'women', man: 'men'}[hookup_data.gender]
 	
-	profile_data.overall_death_count = 124
-	profile_data.same_gender_death_count = 20
-	profile_data.same_age_death_count = 4
+	// You should know that...
 
-	fillData(hookups, profile_data)
+	hookup_data.overall_death_count = palestine_data.length
+	hookup_data.same_gender_death_count = count(palestine_data, (e) => e[2] == {man: 'Male', woman: 'Feminine'}[hookup_data.gender])
+	hookup_data.same_age_death_count = count(palestine_data, (e) => e[4] == hookup_data.age)
+
+	// Expressed in time that means...
+
+	
+
+	fillData(hookups, hookup_data)
 }
 
 /** Fills the HTML elements with the data from the source. */
