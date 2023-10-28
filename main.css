@@ -1,9 +1,11 @@
 :root {
   /* Colors */
-  --header-bg: rgb(0, 0, 0);
+  --header-bg: #252525;
+  --footer-bg: #000;
   --bg: #111;
   --color: #ffe;
-  --accent: #f15353;
+  --accent: #da222c;
+  --accent2: #a9b8bb;
   --font-family: "Gentium Boo", "Helvetica", "Courier New", "Courier", monospace;
   --link: #5555ff;
   --base-font-size: 14pt;
@@ -17,48 +19,61 @@
 html {
   color: var(--color);
   font-family: var(--font-family);
+  scroll-behavior: smooth;
 }
 
 div.bg {
-  opacity: 20%;
-  background-color: #111;
-}
-
-div.bg.header {
-  background-image: url('./img/hebron.jpg');
-  background-size: cover;
-  background-position: center;
-  position: fixed;
-  width: 100%;
-  height: 100dvh;
-}
-
-div.bg.main {
   z-index: -1;
+  position: absolute;
+  width: 100%;
+}
+
+.page-container div.bg {
+  position: absolute;
+  height: 100%;
+}
+
+header div.bg {
+  height: calc(100% - 8em);
+}
+
+.page-container {
   background-image: url('./img/bg.jpeg');
+  background-color: #252525;
   background-size: cover;
+  background-blend-mode: multiply;
   background-position: center;
-  position: fixed;
-  width: 100dvw;
-  height: 100dvh;
+  background-attachment: fixed;
+  isolation: isolate;
 }
 
 header {
-  height: 90dvh;
+  background-image: url('./img/hebron.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-blend-mode: multiply;
+  height: calc(100dvh - 8em);
   align-items: center;
+  isolation: isolate;
   background-color: var(--header-bg);
-  clip-path: border-box;
 }
 
 footer {
   padding-block: 4em;
 
-  background-color: var(--header-bg);
+  background-color: var(--footer-bg);
 }
 
 main {
   margin-inline: 1em;
   font-size: var(--base-font-size);
+}
+
+h1 {
+  align-self: center;
+  font-size: 40pt;
+  margin-block-end: 1em;
 }
 
 .t0 {
@@ -67,6 +82,19 @@ main {
 
 .t1 {
   font-size: 120%;
+  color: var(--accent2);
+}
+
+.t1 a {
+  color: var(--bg);
+  text-decoration: none;
+  padding: 0.5em;
+  background-color: var(--accent2);
+}
+
+.t1 a:hover {
+  background-color: var(--color);
+  color: var(--bg);
 }
 
 span.hk {
@@ -84,6 +112,7 @@ span.hk {
   margin-inline: 0.5em;
   background: inherit;
   border: none;
+  text-align: center;
   border-bottom: 1px solid var(--accent);
   color: var(--accent);
   font-size: inherit;
