@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="./layout.css">
+	<link rel="stylesheet" href="./main.css">
+
+	<script src="./papaparse.min.js"></script>
+	<script src="./utils.js"></script>
+	<script src="./main.js"></script>
+</head>
+<body onload="main()">
+	<header>
+
+	</header>
+	<div class="flex h">
+		<aside>
+	
+		</aside>
+		<main class="flex v expand">
+			<section>
+				<div class="flex v center expand">
+					<span class="info t1">I am <span datum="name" class="hk">{name}</span> and I am <span datum="age" class="hk">{age}</span> years old.</span>
+					<span class="info t1">I live in <span datum="country" class="hk">{country}</span>, in the city of <span datum="city" class="hk">{city}</span>.</span>
+				</div>
+			</section>
+			<section>
+				<div class="flex v expand">
+					<span class="info t1">You should know that...</span>
+					<table>
+						<tr>
+							<td><span class="hk" datum="alike_death_count"></span></td>
+							<td>people like yourself have been murdered by Israel in its genocide in Gaza, Palestine.</td>
+						</tr>
+					</table>
+				</div>
+			</section>
+			<section>
+				<div class="flex v expand">
+					<span class="info t1">Expressed in time, that means that...</span>
+				</div>
+			</section>
+			<section>
+				<div class="flex v expand">
+					<span class="info t1">To give you a better sence of scale: the death toll in Gaza,<br>Palestine would equal the following in <span datum="country" class="hk"></span>...</span>
+				</div>
+			</section>
+			<section>
+				<div class="flex v expand">
+					<span class="info t1"></span>
+				</div>
+			</section>
+		</main>
+	</div>
+	<footer>
+		
+		<ul>
+			<li>
+
+			</li>
+		</ul>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+*,
+:root,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CSS Colors */
+
+:root {
+}
+
+.flex {
+  display: flex;
+}
+
+.flex .h {
+  flex-direction: row;
+}
+
+.flex .v {
+  flex-direction: column;
+}
+
+.center {
+  justify-content: center;
+}
+
+.expand {
+  flex-grow: 1;
+}

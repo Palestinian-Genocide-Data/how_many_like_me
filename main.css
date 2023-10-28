@@ -1,0 +1,52 @@
+:root {
+  /* Colors */
+  --header-bg: #121;
+  --bg: #111;
+  --color: #ffe;
+  --accent: #ee3333;
+}
+
+html {
+  background-color: var(--bg);
+  color: var(--color);
+}
+
+header {
+  height: 10em;
+
+  background-color: var(--header-bg);
+}
+
+main {
+  margin-inline: 1em;
+  font-size: 1.2em;
+}
+
+.t1 {
+  font-size: 120%;
+}
+
+span.hk {
+  display: contents;
+  color: var(--accent);
+}
+
+.info {
+  display: flex;
+  align-self: center;
+  width: fit-content;
+}
+
+section {
+  margin-block: 2em;
+}
+
+table {
+  margin-inline: 6em;
+  margin-block: 1em;
+}
+
+td:nth-child(1) {
+  padding-inline: 1em;
+  font-size: 200%;
+}
