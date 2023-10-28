@@ -82,17 +82,17 @@ async function precomputePalestineStatistics() {
 
 	// You should know that...
 
-	hookup_data.overall_death_count = palestine_data.deaths.length
 	hookup_data.same_gender_death_count = count(palestine_data.deaths, (e) => e[2] == {man: 'Male', woman: 'Feminine'}[hookup_data.gender])
 	hookup_data.same_age_death_count = count(palestine_data.deaths, (e) => e[4] == hookup_data.age)
-
-	// Expressed in time that means...
-
-	hookup_data.similar_death_count_per_day = Math.floor(count(palestine_data.deaths, (e) =>
+	hookup_data.overall_death_count = count(palestine_data.deaths, (e) =>
 		true
 		&& e[2] == {man: 'Male', woman: 'Feminine'}[hookup_data.gender]
 		&& e[4] == hookup_data.age
-	) / beggining_of_time)
+	)
+
+	// Expressed in time that means...
+
+	hookup_data.similar_death_count_per_day = Math.floor(hookup_data.overall_death_count / beggining_of_time)
 	hookup_data.hours_between_similar_deaths = 24 / hookup_data.similar_death_count_per_day
 
 	// In your country
