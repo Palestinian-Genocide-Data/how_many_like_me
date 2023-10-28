@@ -5,7 +5,7 @@
   --bg: #111;
   --color: #ffe;
   --accent: #da222c;
-  --accent2: #a9b8bb;
+  --accent2: #b3d3da;
   --font-family: "Gentium Boo", "Helvetica", "Courier New", "Courier", monospace;
   --link: #5555ff;
   --base-font-size: 14pt;
@@ -113,8 +113,8 @@ span.hk {
   background: inherit;
   border: none;
   text-align: center;
-  border-bottom: 1px solid var(--accent);
-  color: var(--accent);
+  border-bottom: 1px solid var(--accent2);
+  color: var(--accent2);
   font-size: inherit;
   font-family: var(--font-family);
 }
