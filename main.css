@@ -3,12 +3,14 @@
   --header-bg: #121;
   --bg: #111;
   --color: #ffe;
-  --accent: #ee3333;
+  --accent: #f15353;
+  --font-family: "Cascadia Code";
 }
 
 html {
-  background-color: var(--bg);
+  background-color: var(--bg) !important;
   color: var(--color);
+  font-family: var(--font-family);
 }
 
 header {
@@ -19,7 +21,11 @@ header {
 
 main {
   margin-inline: 1em;
-  font-size: 1.2em;
+  font-size: 12pt;
+}
+
+.t0 {
+  font-size: 150%;
 }
 
 .t1 {
@@ -37,6 +43,24 @@ span.hk {
   width: fit-content;
 }
 
+.info select, .info input {
+  margin-inline: 0.5em;
+  background: inherit;
+  border: none;
+  border-bottom: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: inherit;
+  font-family: var(--font-family);
+}
+
+.info input[type='number'] {
+  width: 2.3em;
+}
+
+.info input[type='text'] {
+  width: 8em;
+}
+
 section {
   margin-block: 2em;
 }
@@ -44,9 +68,19 @@ section {
 table {
   margin-inline: 6em;
   margin-block: 1em;
+  max-width: 700px;
+
+  align-self: center;
 }
 
 td:nth-child(1) {
   padding-inline: 1em;
   font-size: 200%;
+  width: 100px;
+  overflow-x: hidden;
+  text-align: right;
+}
+
+td {
+  padding-block: 0.4em;
 }

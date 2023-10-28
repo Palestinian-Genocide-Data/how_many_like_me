@@ -1,8 +1,15 @@
-let datasource = {}
 let beggining_of_time = new Date()
+let datasource = {
+	gender: "man",
+	gender_pl: "men" 
+}
+
+let population_data 
 
 /** Main function */
-function main() {
+async function main() {
+	population_data = await populationDataByCity(datasource)
+
 	const elements = document.querySelectorAll(".hk")
 	const hookups = {}
 
@@ -12,11 +19,25 @@ function main() {
 		hookups[dt].push(el)
 	}
 
-	console.log(hookups)
 
-	datasource = generateDataSource()
+	//fillData(hookups, datasource)
+}
 
-	fillData(hookups, datasource)
+async function populationDataByCity() {
+	let population_data = await read_as_csv('./data/d_population.csv')
+
+	const result = {}
+
+	for (i in population_data.data) {
+		let el = population_data.data[i]
+
+		result[el[2]] ??= []
+		result[el[2]][el[1]] ??= []
+		result[el[2]][el[1]].push(el.slice(0))
+		console.log(el)
+	}
+
+	return result
 }
 
 /** Fills the HTML elements with the data from the source. */
@@ -24,27 +45,18 @@ function fillData(hookups, source) {
 	for (const key of Object.keys(hookups)) {
 		let content = source[key]
 
-		hookups[key].map((el) => {
+		hookups[key].forEach((el) => {
 			if (typeof content == 'string') {
 				el.innerHTML = content
+				return
 			}
 
 			if (typeof content == 'function') {
 				setInterval(content, 1, el)
+				return
 			}
+
+			el.innerHTML = content.toString()
 		})
 	}
 }
-
-/** Pulls the data from the CSV files */
-function generateDataSource(target) {
-	return {
-		name: "Man",
-		age: "30",
-		country: "Indonesia",
-		city: "Jakarta",
-
-		alike_death_count: (el) => el.innerHTML = f_x(beggining_of_time, 1).toFixed(0),
-	}
-}
-

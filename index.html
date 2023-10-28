@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>How Many Like Me?</title>
 
 	<link rel="stylesheet" href="./layout.css">
 	<link rel="stylesheet" href="./main.css">
@@ -13,6 +13,11 @@
 	<script src="./main.js"></script>
 </head>
 <body onload="main()">
+	<style>
+		:root {
+			background-color: #000;
+		}
+	</style>
 	<header>
 
 	</header>
@@ -23,27 +28,39 @@
 		<main class="flex v expand">
 			<section>
 				<div class="flex v center expand">
-					<span class="info t1">I am <span datum="name" class="hk">{name}</span> and I am <span datum="age" class="hk">{age}</span> years old.</span>
-					<span class="info t1">I live in <span datum="country" class="hk">{country}</span>, in the city of <span datum="city" class="hk">{city}</span>.</span>
+					<span class="info t0">I am <select>
+						<option value="woman" selected>a woman</option>
+						<option value="man" selected>a man</option>
+					</select> and I am <input type="number" value="14"> years old.</span>
+					<span class="info t0">I live in <input type="text" id="select-country" value="United States">,</span>
+					<span class="info t0">in the city of <input type="text" id="select-city" value="New York">.</span>
 				</div>
 			</section>
-			<section>
+			<section id="info_alike">
 				<div class="flex v expand">
 					<span class="info t1">You should know that...</span>
 					<table>
 						<tr>
-							<td><span class="hk" datum="alike_death_count"></span></td>
+							<td><span class="hk" datum="alike_death_count">_</span></td>
 							<td>people like yourself have been murdered by Israel in its genocide in Gaza, Palestine.</td>
+						</tr>
+						<tr>
+							<td><span class="hk" datum="same_gender_death_count">_</span></td>
+							<td><span class="hk" datum="gender_pl"></span> like you have been murdered in 21 days by Israel's violence & siege in Gaza, Palestine.</td>
+						</tr>
+						<tr>
+							<td><span class="hk" datum="same_age_death_count">_</span></td>
+							<td>other people of this age have been destroyed, starved, or otherwise killed by Israel's ethnic cleansing in Gaza, Palestine.</td>
 						</tr>
 					</table>
 				</div>
 			</section>
-			<section>
+			<section id="info_time_elapsed">
 				<div class="flex v expand">
 					<span class="info t1">Expressed in time, that means that...</span>
 				</div>
 			</section>
-			<section>
+			<section id="info_in_your_country">
 				<div class="flex v expand">
 					<span class="info t1">To give you a better sence of scale: the death toll in Gaza,<br>Palestine would equal the following in <span datum="country" class="hk"></span>...</span>
 				</div>
