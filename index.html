@@ -29,40 +29,39 @@
 			<section>
 				<div class="flex v center expand">
 					<span class="info t0">I am
-						<select datum="gender" class="profile-datum">
+						<select datum="gender" class="profile-datum" onchange="update()">
 							<option value="woman" selected>a woman</option>
 							<option value="man" selected>a man</option>
 						</select>
 						and I am
-						<input datum="age" class="profile-datum" type="number" value="14">
+						<input datum="age" class="profile-datum" type="number" value="14" onchange="update()">
 						years old.</span>
 					<span class="info t0">
 						I live in
-						<input datum="country" class="profile-datum" type="text" id="select-country" value="United States">
+						<input datum="country" class="profile-datum" type="text" id="select-country" value="United States" onchange="update()">
 						,
 					</span>
 					<span class="info t0">
 						in the city of
-						<input datum="city" class="profile-datum" type="text" id="select-city" value="New York">
+						<input datum="city" class="profile-datum" type="text" id="select-city" value="New York" onchange="update()">
 						.
 					</span>
 				</div>
 			</section>
-			<input type="button" onclick="update()" value="(WIP) update"/>
 			<section id="info_alike">
 				<div class="flex v expand">
 					<span class="info t1">You should know that...</span>
 					<table>
 						<tr>
-							<td><span class="hk" datum="overall_death_count">_</span></td>
+							<td><span class="hk" datum="overall_death_count">...</span></td>
 							<td>people like yourself have been murdered by Israel in its genocide in Gaza, Palestine.</td>
 						</tr>
 						<tr>
-							<td><span class="hk" datum="same_gender_death_count">_</span></td>
+							<td><span class="hk" datum="same_gender_death_count">...</span></td>
 							<td><span class="hk" datum="gender_pl"></span> like you have been murdered in 21 days by Israel's violence & siege in Gaza, Palestine.</td>
 						</tr>
 						<tr>
-							<td><span class="hk" datum="same_age_death_count">_</span></td>
+							<td><span class="hk" datum="same_age_death_count">...</span></td>
 							<td>other people of this age have been destroyed, starved, or otherwise killed by Israel's ethnic cleansing in Gaza, Palestine.</td>
 						</tr>
 					</table>
@@ -71,16 +70,69 @@
 			<section id="info_time_elapsed">
 				<div class="flex v expand">
 					<span class="info t1">Expressed in time, that means that...</span>
+					<table>
+						<tr>
+							<td><span class="hk" datum="similar_death_count_per_day">...</span></td>
+							<td>people just like you are murdered per day by Israel in Gaza, Palestine..</td>
+						</tr>
+						<tr>
+							<td><span class="hk" datum="hours_between_similar_deaths">...</span></td>
+							<td>hours pass between two people of your age and sex being killed by air raids, starvation, or lack of necessities.</td>
+						</tr>
+					</table>
 				</div>
 			</section>
 			<section id="info_in_your_country">
 				<div class="flex v expand">
 					<span class="info t1">To give you a better sence of scale: the death toll in Gaza,<br>Palestine would equal the following in <span datum="country" class="hk"></span>...</span>
+					<table>
+						<tr>
+							<td><span class="hk" datum="deaths_in_your_country">...</span></td>
+							<td>deaths.</td>
+						</tr>
+						<tr>
+							<td><span class="hk" datum="child_deaths_in_your_country">...</span></td>
+							<td>dead children.</td>
+						</tr>
+						<tr>
+							<td><span class="hk" datum="infant_deaths_in_your_country">...</span></td>
+							<td>dead babies.</td>
+						</tr>
+					</table>
 				</div>
 			</section>
-			<section>
+			<section id="info_in_your_city">
 				<div class="flex v expand">
-					<span class="info t1"></span>
+					<span class="info t1">And it would equal the following in <span datum="city" class="hk"></span>...</span>
+					<table>
+						<tr>
+							<td><span class="hk" datum="deaths_in_your_city">...</span></td>
+							<td>deaths.</td>
+						</tr>
+						<tr>
+							<td><span class="hk" datum="child_deaths_in_your_city">...</span></td>
+							<td>dead children.</td>
+						</tr>
+						<tr>
+							<td><span class="hk" datum="infant_deaths_in_your_city">...</span></td>
+							<td>dead babies.</td>
+						</tr>
+					</table>
+					<span class="info t1">or</span>
+					<table>
+						<tr>
+							<td><span class="hk" datum="deaths_in_your_city_per_day">...</span></td>
+							<td>deaths per day.</td>
+						</tr>
+						<tr>
+							<td><span class="hk" datum="child_deaths_in_your_city_per_day">...</span></td>
+							<td>dead children per day.</td>
+						</tr>
+						<tr>
+							<td><span class="hk" datum="infant_deaths_in_your_city_per_day">...</span></td>
+							<td>dead babies per day.</td>
+						</tr>
+					</table>
 				</div>
 			</section>
 		</main>
@@ -90,7 +142,7 @@
 		<section>
 			<ul>
 				<li>
-					Public list of Palestinian Victims: <a target="_blank" href="https://www.moh.gov.ps/portal/wp-content/uploads/2023/10/تقرير-نهائي-باسماء-الشهداء-1.pdf">تقرير-نهائي-باسماء-الشهداء-1.pdf</a>
+					Public list of Palestinian Victims: <a target="_blank" href="">تقرير-نهائي-باسماء-الشهداء-1.pdf</a>
 				</li>
 			</ul>
 		</section>

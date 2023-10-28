@@ -5,6 +5,7 @@
   --color: #ffe;
   --accent: #f15353;
   --font-family: "Cascadia Code";
+  --link: #5555ff;
 }
 
 html {
@@ -15,6 +16,11 @@ html {
 
 header {
   height: 10em;
+
+  background-color: var(--header-bg);
+}
+footer {
+  padding-block: 4em;
 
   background-color: var(--header-bg);
 }
@@ -87,4 +93,8 @@ td:nth-child(1) {
 
 td {
   padding-block: 0.4em;
+}
+
+a {
+  color: var(--link);
 }
